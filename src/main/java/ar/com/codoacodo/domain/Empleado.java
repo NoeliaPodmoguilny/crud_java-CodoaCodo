@@ -1,7 +1,6 @@
 package ar.com.codoacodo.domain;
 
 
-
 public class Empleado {
 	private Long dni;
 	private String nombre;
@@ -52,9 +51,6 @@ public class Empleado {
 	public String toString() {
 		return "Empleado [dni=" + dni + ", nombre=" + nombre + ", apellido=" + apellido + ", depto=" + depto + "]";
 	}
-	
-	
-	
 	
 	
 }

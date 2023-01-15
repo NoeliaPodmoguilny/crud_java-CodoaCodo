@@ -1,5 +1,4 @@
 package ar.com.codoacodo.controllers;
-
 import ar.com.codoacodo.dao.iDepartamentoDAO;
 import ar.com.codoacodo.dao.implement.DepartamentoDAOMysqlImpl;
 import ar.com.codoacodo.domain.Departamento;
@@ -21,13 +20,12 @@ public class CreateDepartamentoController extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		//capturo los parametros que viene en el request enviado por el form
-		String nombre= req.getParameter("nombre");//name de input
-		String id = req.getParameter("id");//name de input
-		String presupuesto = req.getParameter("presupuesto");//name de input
+		
+		String nombre= req.getParameter("nombre");
+		String id = req.getParameter("id");
+		String presupuesto = req.getParameter("presupuesto");
 		
 		
-		//validaciones!
 		List<String> errores = new ArrayList<>();
 		if(nombre == null || "".equals(nombre)) {
 			errores.add("Nombre vacío");
@@ -38,38 +36,30 @@ public class CreateDepartamentoController extends HttpServlet {
 		if(presupuesto== null || "".equals(presupuesto)) {
 			errores.add("Presupuesto vacío");
 		}
-		//agrego las demas validaciones!!!! (uds)
+	
 		if(!errores.isEmpty()) {
 			req.setAttribute("errors", errores);
-			//vuelvo a la jsp con la lista de errores cargadas 
+		
 			getServletContext().getRequestDispatcher("/nuevo.jsp").forward(req, resp);
 			return;
 		}
 
 		
-		
-		
-		//interface = new class que implementa la interface
 		iDepartamentoDAO dao = new DepartamentoDAOMysqlImpl();
-		
-		// como llego a la base de datos si quiero pedir datos de un departamento?
 		
 		Departamento d;
        
 		d = new Departamento(Long.parseLong(id),nombre,Double.parseDouble(presupuesto));
-		// si no usamos try catch podemos arriba poner throws Exception
+
 		try {
 			 dao.create(d);
 			 req.setAttribute("success", List.of("Alta de producto exitosa"));
 		}catch (Exception e) {
-			//si falla volver al nuevo.jsp
+		
 			e.printStackTrace();
 			
 		 }
-		//ahora redirect!!!!
 		getServletContext().getRequestDispatcher("/FindAllDepartamentoController").forward(req, resp);
-		
-		
 		
 		
 	}

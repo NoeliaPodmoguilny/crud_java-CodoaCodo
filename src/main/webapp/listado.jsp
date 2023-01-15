@@ -3,26 +3,18 @@
 <!doctype html>
 <html lang="es">
  <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!--animated-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-    <!--logos-->
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
-    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    
-    <title>Departamentos Listado</title>
+    <title>Lista Deptos</title>
   </head>
-	
+
 	<body>
-		<!-- ACA VA EL NAVBAR  include file="navbar.jsp" %> -->
 		<div class="container bg-ligth">
-		 <!-- aca va el navbar.jsp -->
 		 <jsp:include page="navbar.jsp"/>
 		</div>
-		
 		<main>
 			<div class="container bg-light mt-5">
 				<section>
@@ -34,41 +26,32 @@
 					      <th scope="col">NOMBRE</th>
 					      <th scope="col">PRESUPUESTO</th>
 					      <th scope="col">ACCIONES</th>
-					   
 					    </tr>
 					  </thead>
 					  <% 
-					  	//codigo java
-					  	//obtener el listado desde el request
-					  	//se guardo bajo el nombre de "departamentos"
 					  	List<Departamento> listado = (List<Departamento>)request.getAttribute("listado");
 					  %>
 					  <tbody>
-					   <!-- ESTO SE REPITE TANTA CANDTIDAD DE VECES COMO ARTICULOS TENGA -->
 					   <%
 					   	for( Departamento  unDepto : listado) {
 					   %>
 					    <tr>
-						      <th scope="row"> <%=unDepto.getId()%> </th>
-						      <td><%=unDepto.getNombre() %></td>
-						      <td><%=unDepto.getPresupuesto() %></td>
-						   
-						      <td>
-						      	
-							      	<a class="btn btn-info" 
-							      	   role="button" 
-							      	   href="<%=request.getContextPath()%>/UpdateDepartamentoController?id=<%=unDepto.getId()%>">
-							      	   Editar
-							      	</a> | 
-						      		<!-- Button trigger modal -->
-									<button type="button" class="btn btn-danger" 
-										data-bs-toggle="modal" 
-										data-bs-target="#exampleModal" 
-										onclick="setDepartamentoId(<%=unDepto.getId()%>)">
-									  Eliminar
-									</button>
-							  </td>
-					    
+					      <th scope="row"> <%=unDepto.getId()%> </th>
+					      <td><%=unDepto.getNombre() %></td>
+					      <td><%=unDepto.getPresupuesto() %></td>
+						<td>						      	
+					     <a class="btn btn-info" 
+					      	role="button" 
+					      	href="<%=request.getContextPath()%>/UpdateDepartamentoController?id=<%=unDepto.getId()%>">
+					      	Editar
+					      </a>
+						<button type="button" class="btn btn-danger" 
+								data-bs-toggle="modal" 
+								data-bs-target="#exampleModal" 
+								onclick="setDepartamentoId(<%=unDepto.getId()%>)">
+							  	Eliminar
+						</button>
+					  	</td>
 					    </tr>
 					   <%
 					   	}
@@ -101,11 +84,10 @@
 		</div>
 	</body>	
 	  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-	
 
 	  <script>
 			function setDepartamentoId(id) {
 				document.getElementById('idDepto').value=id;
-			}
+				}
 	  </script>
 </html>

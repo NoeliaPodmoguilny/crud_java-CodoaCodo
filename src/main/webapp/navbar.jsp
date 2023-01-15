@@ -15,7 +15,6 @@
         <li class="nav-item">
           <a class="nav-link" href="<%=request.getContextPath()%>/nuevo.jsp">Nuevo Departamento</a>
         </li>
-       
       </ul>
       <div class="d-flex w-75 justify-content-end"> 
 	      <form class="d-flex" action="<%=request.getContextPath()%>/SearchDepartamentoController">
@@ -23,7 +22,6 @@
 		        <button class="btn btn-outline-success" type="submit">Buscar</button>
 	      </form> 
       </div>
-      
     </div>
   </div>
 </nav>
